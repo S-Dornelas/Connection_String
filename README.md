@@ -46,8 +46,8 @@ ______________________________________________________________
                     }
                 }
 
-Desta forma criamos o contrutor para sempre se chamado primeiro nessa classe. Em seguida foi criado dois métodos o de conectar e desconectar no qual deverá ser chamado no escopo de main para abrir e fechar a conexão.
-Quando você cria uma instância de SqlConnection , todas as propriedades são definidas como seus valores iniciais. Para obter uma lista desses valores, consulte o SqlConnection construtor.
+
+Quando você cria uma instância de SqlConnection, todas as propriedades são definidas como seus valores iniciais. Para obter uma lista desses valores, consulte o SqlConnection construtor.
 
                     var connection = new SqlConnection();
                     
@@ -58,11 +58,11 @@ Quando você cria uma instância de SqlConnection , todas as propriedades são 
                     connection.Close();/*se for fechar conecção e depois utilizar novamente 
                                         - OBS: é importante sempre fechar a conexão.*/
                     
-                    connection.Dispose(); /*quando for fechar uma conexão e não irá abrir mais
-                     *se vc usar o dispose terá que estanciar o objeto novamente (new), ou seja,
+                    connection.Dispose(); /*quando for fechar uma conexão e não irá abrir mais,
+                     se vc usar o dispose terá que estanciar o objeto novamente (new), ou seja,
                      o connection.open() não funcionará*/
 
-Se o SqlConnection  escopo ficar fora do escopo, ele não será fechado. Portanto, você deve fechar explicitamente a conexão chamando Close ou Dispose. Close e Dispose são funcionalmente equivalentes.
+Se o SqlConnection ficar fora do escopo, ele não será fechado. Portanto, você deve fechar explicitamente a conexão chamando Close ou Dispose. Close e Dispose são funcionalmente equivalentes.
 
 ______________________________________________________________
 2. Método utilizando using:
@@ -88,4 +88,4 @@ Para garantir que as conexões estejam sempre fechadas, abra a conexão dentro d
 
 Podemos verificar que foi criado uma constante para interligar a connection string, assim não precisamos criar uma classe para a conexão, em seguida foi utilizado o using concatenando com a constante criada, desta forma não precisamos ficar abrindo e fechando a conexão, ou seja, utilizar o connection.Open(), connection.Close() e connection.Dispose() para a utilização do CRUD.
 
-Segui o link como conseguir de froma mais rapida a string connection:  https://www.youtube.com/watch?v=yvNW8oEKQ7Q
+Link mostrando como conseguir de froma mais rapida a string connection:  https://www.youtube.com/watch?v=yvNW8oEKQ7Q
