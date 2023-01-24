@@ -10,15 +10,18 @@ Embora o .NET não tenha uma biblioteca para acesso à dados já incluso, a Micr
 
 Para adicionar este pacote, basta executar o comando abaixo no Terminal:
 
+
 ```csharp
 **dotnet add package Microsoft.Data.SqlClient**
 ```
+
 
 Este pacote é a base para conexões ao **SQL Server**, e tanto no Dapper quanto Entity Framework Core, precisamos dele. No caso do Entity Framework Core, ele é instalado automaticamente junto a outro pacote que vou mostrar mais adiante.
 
 Para remover o pacote: dotnet remove package Microsoft.Data.SqlClient
 
 O using `System.Data.SqlClient` nos dará acesso as classes de acesso a dados usadas no projeto : *`SqlConnection, SqlCommand`, `SqlDataReader`* e a propriedade *`ConnectionState`;*
+
 
 ```csharp
 using Microsoft.Data.SqlClient; <-----Connection String
@@ -35,16 +38,19 @@ public class Program
 }
 ```
 
+
 ## 2. ***SqlConnection***
+
 
 <aside>
 💡 [https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-6.0](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-6.0)
-
 </aside>
+
 
 Um `SqlConnection` objeto representa uma sessão exclusiva para uma fonte de dados SQL Server. Com um sistema de banco de dados cliente/servidor, ele é equivalente a uma conexão de rede com o servidor. `SqlConnection` é usado junto com `SqlDataAdapter`  e `SqlCommand` para aumentar o desempenho ao se conectar a um banco de dados Microsoft SQL Server.
 
 Quando você cria uma instância de `SqlConnection` , todas as propriedades são definidas como seus valores iniciais. Para obter uma lista desses valores, consulte o `SqlConnection` construtor.
+
 
 ```csharp
 var connection = new SqlConnection();
@@ -61,14 +67,18 @@ var connection = new SqlConnection();
          o connection.open() não funcionará*/
 ```
 
+
 Se o `SqlConnection`  escopo ficar fora do escopo, ele não será fechado. Portanto, você deve fechar explicitamente a conexão chamando `Close` ou `Dispose`. `Close` e `Dispose` são funcionalmente equivalentes.
+
 
 <aside>
 💡 Outra forma de se conectar mais rápido ao servidor é utilizando o `using.`
 
 </aside>
 
+
 Para garantir que as conexões estejam sempre fechadas, abra a conexão dentro de um `using` bloco, conforme mostrado no fragmento de código a seguir. Isso garante que a conexão seja fechada automaticamente quando o código sair do bloco.
+
 
 ```csharp
 using Microsoft.Data.SqlClient;
@@ -90,10 +100,15 @@ public class Program
 }
 ```
 
+
 ## 3. ***SqlCommand***
 
-[Conhecendo melhor a classe SqlCommand do .NET](https://www.devmedia.com.br/conhecendo-melhor-a-classe-sqlcommand-do-net/25976)
 
+<aside>
+💡[Conhecendo melhor a classe SqlCommand do .NET](https://www.devmedia.com.br/conhecendo-melhor-a-classe-sqlcommand-do-net/25976)
+<aside>
+    
+    
 Entre as classes mais utilizadas do .NET Framework encontra-se a SqlCommand, presente no namespace System.Data.SqlClient. Esta classe é responsável por executar instruções SQL em bancos de dados SQL Server, podendo ser usada tanto para consultas como para instruções “não query”, como updates, inserts e execução de procedures.
 
 ### **Principais propriedades**
@@ -111,6 +126,7 @@ Entre as classes mais utilizadas do .NET Framework encontra-se a SqlCommand, pre
 **Connection**: um objeto do tipo SqlConnection (classe contida no mesmo namespace), que representa e possui os dados da conexão atual com o banco de dados.
 
 **Parameters**: esta é uma coleção de objetos do tipo SqlParameter e, assim como a maioria das coleções, possui métodos como Add, Remove, etc. Os parâmetros dessa lista devem corresponder àqueles definidos no CommandText (identificados por @ antes do nome). Mais adiante teremos exemplos de uso dessa propriedade.
+
 
 ```csharp
 using Microsoft.Data.SqlClient;
@@ -145,11 +161,13 @@ public class Program
 }
 ```
 
+
 ## 4. ***SqlDataReader***
 
 As principais caracteristicas do DataReader são: foward-only (somente avança) e read-only (somente leitura).
 
 Fornece uma maneira de ler um fluxo somente de encaminhamento de linhas com base em um banco de dados SQL Server.
+
 
 ```csharp
 var reader = command.ExecuteReader();
@@ -159,17 +177,13 @@ var reader = command.ExecuteReader();
                 }
 ```
 
-Para criar um [SqlDataReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader?view=dotnet-plat-ext-7.0), você deve chamar o [ExecuteReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlcommand.executereader?view=dotnet-plat-ext-7.0) método do [SqlCommand](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlcommand?view=dotnet-plat-ext-7.0) objeto, em vez de usar diretamente um construtor.
 
-Enquanto o [SqlDataReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader?view=dotnet-plat-ext-7.0) está sendo usado, o associado [SqlConnection](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-7.0) está ocupado servindo o [SqlDataReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader?view=dotnet-plat-ext-7.0), e nenhuma outra operação pode ser executada além de [SqlConnection](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-7.0) fechá-la. Esse é o caso até que o [Close](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader.close?view=dotnet-plat-ext-7.0) método do [SqlDataReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader?view=dotnet-plat-ext-7.0) seja chamado. Por exemplo, você não pode recuperar parâmetros de saída até depois de chamar [Close](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader.close?view=dotnet-plat-ext-7.0).
+Para criar um SqlDataReader, você deve chamar o ExecuteReader método do SqlCommand objeto, em vez de usar diretamente um construtor.
+
+Enquanto o SqlDataReader está sendo usado, o associado SqlConnection está ocupado servindo o SqlDataReader, e nenhuma outra operação pode ser executada além de SqlConnection fechá-la. Esse é o caso até que o Close método do SqlDataReader seja chamado. Por exemplo, você não pode recuperar parâmetros de saída até depois de chamar Close.
 
 As alterações feitas em um conjunto de resultados por outro processo ou thread enquanto dados estão sendo lidos podem ser visíveis para o usuário do `SqlDataReader`. No entanto, o comportamento preciso depende do tempo.
 
-<aside>
-💡 Para um desempenho ideal, **[SqlDataReader](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader?view=dotnet-plat-ext-7.0)** evita criar objetos desnecessários ou fazer cópias desnecessárias de dados. Portanto, várias chamadas para métodos como **[GetValue](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader.getvalue?view=dotnet-plat-ext-7.0)**
- retornar uma referência ao mesmo objeto. Tenha cuidado se você estiver modificando o valor subjacente dos objetos retornados por métodos como **[GetValue](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqldatareader.getvalue?view=dotnet-plat-ext-7.0)**.
-
-</aside>
 
 Em meus estudos encontrei vários tipos de conexão, seja com a criação de uma classe ou utilizando o using, cujo achei o método mais simples e prático.
 
