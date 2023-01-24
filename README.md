@@ -1,5 +1,4 @@
-# Conexao com Banco de Dados
-Connection String
+# CONNECTION_STRING
 
 Criei esse repository com o objetivo de apresentar como fazer uma Connection String, mas antes vamos conceituar o que é Connection String, ou seja, a Connection String define como vamos nos conectar ao banco de dados, qual usuário e banco vamos utilizar e outros recursos de segurança.
 
