@@ -77,8 +77,9 @@ Para garantir que as conexões estejam sempre fechadas, abra a conexão dentro d
                     {
                         public static void Main(string[] args)
                         {
-                            const string connectionString = "Server=localhost...";//string de conecção
-                            using (var connection = new SqlConnection(connectionString))
+                            const string CONNECTION_STRING = "Server=localhost...";//string de conecção
+                           
+                            using (var connection = new SqlConnection(CONNECTION_STRING))
                             {
                                 Console.WriteLine("Conectado");
                             }
