@@ -4,7 +4,7 @@ Em meus estudos encontrei vários tipos de conexão, seja com a criação de uma
 
 Portanto, criei esse repository com o objetivo de apresentar como fazer uma Connection String utilizando o SQL Server, mas antes vamos conceituar o que é Connection String, ou seja, a Connection String define como vamos nos conectar ao banco de dados, qual usuário e banco vamos utilizar e outros recursos de segurança.
 
-## ***Connection String* (**String de conecção)
+## ***Connection String* (**String de conexão)
 
 A **Connection String** define como vamos nos conectar ao banco de dados, qual usuário e banco vamos utilizar e outros recursos de segurança.
 
@@ -34,7 +34,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        const string CONNECTION_STRING = "colocar  URL que se conectará";//string de conecção
+        const string CONNECTION_STRING = "colocar  URL que se conectará";//string de conexão
         
     }
 }
@@ -78,9 +78,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        const string connectionString = "Server=localhost";//string de conecção
+        const string CONNECTION_STRING = "Server=localhost";//string de conexão
         
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(CONNECTION_STRING))
         {
             Console.WriteLine("Conectado");
         }
@@ -120,9 +120,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        const string connectionString = "Server=localhost";//string de conecção
+        const string CONNECTION_STRING = "Server=localhost";//string de conexão
         
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(CONNECTION_STRING))
         {
             Console.WriteLine("Conectado");
             
