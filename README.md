@@ -1,6 +1,8 @@
 # CONNECTION_STRING
 
-Criei esse repository com o objetivo de apresentar como fazer uma Connection String utilizando o SQL Server, mas antes vamos conceituar o que é Connection String, ou seja, a Connection String define como vamos nos conectar ao banco de dados, qual usuário e banco vamos utilizar e outros recursos de segurança.
+Em meus estudos encontrei vários tipos de conexão, seja com a criação de uma classe ou utilizando o using, cujo achei o método mais simples e prático.
+
+Portanto, criei esse repository com o objetivo de apresentar como fazer uma Connection String utilizando o SQL Server, mas antes vamos conceituar o que é Connection String, ou seja, a Connection String define como vamos nos conectar ao banco de dados, qual usuário e banco vamos utilizar e outros recursos de segurança.
 
 ## ***Connection String* (**String de conecção)
 
@@ -41,12 +43,6 @@ public class Program
 
 ## 2. ***SqlConnection***
 
-
-<aside>
-💡 [https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-6.0](https://learn.microsoft.com/pt-br/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-6.0)
-</aside>
-
-
 Um `SqlConnection` objeto representa uma sessão exclusiva para uma fonte de dados SQL Server. Com um sistema de banco de dados cliente/servidor, ele é equivalente a uma conexão de rede com o servidor. `SqlConnection` é usado junto com `SqlDataAdapter`  e `SqlCommand` para aumentar o desempenho ao se conectar a um banco de dados Microsoft SQL Server.
 
 Quando você cria uma instância de `SqlConnection` , todas as propriedades são definidas como seus valores iniciais. Para obter uma lista desses valores, consulte o `SqlConnection` construtor.
@@ -69,13 +65,6 @@ var connection = new SqlConnection();
 
 
 Se o `SqlConnection`  escopo ficar fora do escopo, ele não será fechado. Portanto, você deve fechar explicitamente a conexão chamando `Close` ou `Dispose`. `Close` e `Dispose` são funcionalmente equivalentes.
-
-
-<aside>
-💡 Outra forma de se conectar mais rápido ao servidor é utilizando o `using.`
-
-</aside>
-
 
 Para garantir que as conexões estejam sempre fechadas, abra a conexão dentro de um `using` bloco, conforme mostrado no fragmento de código a seguir. Isso garante que a conexão seja fechada automaticamente quando o código sair do bloco.
 
@@ -102,12 +91,6 @@ public class Program
 
 
 ## 3. ***SqlCommand***
-
-
-<aside>
-💡[Conhecendo melhor a classe SqlCommand do .NET](https://www.devmedia.com.br/conhecendo-melhor-a-classe-sqlcommand-do-net/25976)
-<aside>
-    
     
 Entre as classes mais utilizadas do .NET Framework encontra-se a SqlCommand, presente no namespace System.Data.SqlClient. Esta classe é responsável por executar instruções SQL em bancos de dados SQL Server, podendo ser usada tanto para consultas como para instruções “não query”, como updates, inserts e execução de procedures.
 
@@ -184,8 +167,6 @@ Enquanto o SqlDataReader está sendo usado, o associado SqlConnection está o
 
 As alterações feitas em um conjunto de resultados por outro processo ou thread enquanto dados estão sendo lidos podem ser visíveis para o usuário do `SqlDataReader`. No entanto, o comportamento preciso depende do tempo.
 
-
-Em meus estudos encontrei vários tipos de conexão, seja com a criação de uma classe ou utilizando o using, cujo achei o método mais simples e prático.
 
 ______________________________________________________________
 1. Método utilizando Classe:
